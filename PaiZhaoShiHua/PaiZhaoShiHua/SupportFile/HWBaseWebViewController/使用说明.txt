@@ -1,0 +1,11 @@
+1. 在.h文件中继承
+#import "HWBaseWebViewController.h"
+@interface twoViewController : HWBaseWebViewController
+@end
+
+2. 在.m文件中
+- (void)viewDidLoad {
+[super viewDidLoad];
+self.url = [NSURL URLWithString:@"https://www.hao123.com"];
+}
+
