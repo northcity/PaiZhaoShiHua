@@ -7,8 +7,6 @@
 //
 
 #import "LaunchViewController.h"
-
-#import "ViewController.h"
 #import "HomePageViewController.h"
 @interface LaunchViewController ()
 

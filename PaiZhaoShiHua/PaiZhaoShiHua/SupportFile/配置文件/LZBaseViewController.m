@@ -7,7 +7,6 @@
 //
 
 #import "LZBaseViewController.h"
-#import "AppDelegate.h"
 
 @interface LZBaseViewController ()
 

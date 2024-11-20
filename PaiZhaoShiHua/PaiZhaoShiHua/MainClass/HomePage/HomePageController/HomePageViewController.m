@@ -169,14 +169,6 @@
     self.drawView.frame = CGRectMake(30, 30, width, height);
     
     
-
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -230,13 +222,6 @@
     baiKeShowLabel.textColor = [UIColor grayColor];
     baiKeShowLabel.textAlignment = NSTextAlignmentLeft;
     [self.baiKeView addSubview:baiKeShowLabel];
-    
-    
-    
-    
-    
-    
-    
     
     _myFllowView = [[UIView alloc]initWithFrame:CGRectMake(kAUTOWIDTH(20), CGRectGetMaxY(_paiView.frame) + kAUTOHEIGHT(20), (ScreenWidth - kAUTOWIDTH(60))/2, (ScreenWidth - kAUTOWIDTH(60))/2 + kAUTOHEIGHT(20))];
     _myFllowView.layer.cornerRadius = kAUTOHEIGHT(7);
