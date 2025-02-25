@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		BB01161A2CEDC8EC00716B6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0116192CEDC8EC00716B6C /* AppDelegate.swift */; };
 		BB01161D2CEDCDE900716B6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB01161C2CEDCDE900716B6C /* ViewController.swift */; };
 		BB01161F2CEDD77300716B6C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB01161E2CEDD77300716B6C /* HomeViewController.swift */; };
+		BB52843F2D6D6DA600CF6405 /* PZShiBieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */; };
+		BB5284412D6DAC5400CF6405 /* VisionCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */; };
+		BB5284452D6DBC3B00CF6405 /* AliyunOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */; };
 		BD4E67E7EF4B9C5A878FF257 /* Pods_PaiZhaoShiHua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */; };
 		F745E9472193D5C60092244B /* 方正像素12.TTF in Resources */ = {isa = PBXBuildFile; fileRef = F745E9462193D5C60092244B /* 方正像素12.TTF */; };
 		F745E9572193E0C40092244B /* AxcCAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F745E94C2193E0C40092244B /* AxcCAAnimation.m */; };
@@ -210,6 +213,10 @@
 		BB01161B2CEDC8EE00716B6C /* PaiZhaoShiHua-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PaiZhaoShiHua-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB01161C2CEDCDE900716B6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BB01161E2CEDD77300716B6C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PZShiBieManager.swift; sourceTree = "<group>"; };
+		BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraVC.swift; sourceTree = "<group>"; };
+		BB5284422D6DBC3B00CF6405 /* AliyunOSSUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunOSSUpload.h; sourceTree = "<group>"; };
+		BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunOSSUpload.m; sourceTree = "<group>"; };
 		CAE0640B83C670669E0BD094 /* Pods-PaiZhaoShiHua.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.debug.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.debug.xcconfig"; sourceTree = "<group>"; };
 		F4BA96BF3B0E58B810504F24 /* Pods-PaiZhaoShiHua.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.release.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.release.xcconfig"; sourceTree = "<group>"; };
 		F745E9462193D5C60092244B /* 方正像素12.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正像素12.TTF"; sourceTree = "<group>"; };
@@ -513,7 +520,6 @@
 				CAE0640B83C670669E0BD094 /* Pods-PaiZhaoShiHua.debug.xcconfig */,
 				F4BA96BF3B0E58B810504F24 /* Pods-PaiZhaoShiHua.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -523,6 +529,15 @@
 				3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB5284442D6DBC3B00CF6405 /* SJAliOSSUpload */ = {
+			isa = PBXGroup;
+			children = (
+				BB5284422D6DBC3B00CF6405 /* AliyunOSSUpload.h */,
+				BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */,
+			);
+			path = SJAliOSSUpload;
 			sourceTree = "<group>";
 		};
 		F745E9482193E0C30092244B /* AxcDrawPathPackage */ = {
@@ -656,6 +671,7 @@
 		F76109BF21806C8E00AD51BE /* SupportFile */ = {
 			isa = PBXGroup;
 			children = (
+				BB5284442D6DBC3B00CF6405 /* SJAliOSSUpload */,
 				F75802AD219D093900F4E933 /* ChuLiImageManager.h */,
 				F75802AE219D093900F4E933 /* ChuLiImageManager.m */,
 				F798416721997D97005FB00E /* HWBaseWebViewController */,
@@ -707,6 +723,8 @@
 				F76109CA2181782000AD51BE /* SearchViewController.h */,
 				F76109CB2181782000AD51BE /* SearchViewController.m */,
 				BB01161E2CEDD77300716B6C /* HomeViewController.swift */,
+				BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */,
+				BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */,
 			);
 			path = HomePageController;
 			sourceTree = "<group>";
@@ -1426,6 +1444,7 @@
 				F7FFD41C2195312300433687 /* LZiCloudViewController.m in Sources */,
 				F7FFD4522195325C00433687 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				F7FFD4542195325C00433687 /* MASCompositeConstraint.m in Sources */,
+				BB5284412D6DAC5400CF6405 /* VisionCameraVC.swift in Sources */,
 				F7FFD34021951D7D00433687 /* RewardSuccess.m in Sources */,
 				F7FFD4532195325C00433687 /* ViewController+MASAdditions.m in Sources */,
 				F7FFD4252195312300433687 /* FMDatabaseQueue.m in Sources */,
@@ -1444,6 +1463,7 @@
 				F7FFD3E5219530C700433687 /* LZDocument.m in Sources */,
 				F745E9582193E0C40092244B /* AxcPolarAxis.m in Sources */,
 				F7FFD4632195580200433687 /* ShanNianTableViewCell.m in Sources */,
+				BB5284452D6DBC3B00CF6405 /* AliyunOSSUpload.m in Sources */,
 				F79841742199896D005FB00E /* ShiBieHuaViewController.m in Sources */,
 				F7FFD4292195312300433687 /* FMResultSet.m in Sources */,
 				F7FFD32F21951CDE00433687 /* SettingViewController.m in Sources */,
@@ -1495,6 +1515,7 @@
 				F7FFD32921951CDE00433687 /* AboutViewController.m in Sources */,
 				F798416C21997D97005FB00E /* HWBaseWebViewController.m in Sources */,
 				F7FFD4652195580200433687 /* WaveView.m in Sources */,
+				BB52843F2D6D6DA600CF6405 /* PZShiBieManager.swift in Sources */,
 				15B1DBA3219E65E5000D9829 /* UIImage+Utils.m in Sources */,
 				F7FFD3E8219530C700433687 /* ChineseToPinyin.m in Sources */,
 				F76109942180695800AD51BE /* PaiZhaoShiHua.xcdatamodeld in Sources */,

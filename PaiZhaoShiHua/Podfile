@@ -65,6 +65,9 @@ pod 'SwiftSVG', '~> 2.3.2'
 # pod 'GoogleUserMessagingPlatform'
  
 # pod 'SwiftEntryKit', '2.0.0'
+pod 'AliyunOSSiOS', '2.10.10'
+pod 'SVProgressHUD', '2.3.1'
+
 end
 
 

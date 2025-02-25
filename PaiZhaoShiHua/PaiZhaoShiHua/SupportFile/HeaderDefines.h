@@ -12,6 +12,24 @@
 #import "ThirdPathKey.h"
 #import <Social/Social.h> // 导入苹果自带分享的头文件
 
+///阿里云OSS配置
+#define AccessKeyId  @""
+#define AccessKeySecret @""
+#define OSS_Bucket @"lajifenleipic"
+#define OSS_endpoint  @"oss-cn-shanghai.aliyuncs.com"
+#define Yu_Ming @"https://lajifenleipic.oss-cn-shanghai.aliyuncs.com/"
+#define Yu_Ming_HTTP @"http:lajifenleipic.oss-cn-shanghai.aliyuncs.com/"
+
+#define TouXiang_URL @"timepills/"
+#define PostPicture_URL @"postpicture/"
+
+#define PostMp3_URL @"postmp3/"
+
+#define UserAudio_URL @"useraudio/"
+
+
+
+
 // iOS10 及以上需导  UserNotifications.framework
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
