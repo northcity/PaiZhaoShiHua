@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		154246AF219E7A030026517F /* HuaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 154246AE219E7A030026517F /* HuaClassifier.mlmodel */; };
 		154246B1219E99060026517F /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 154246B0219E99060026517F /* icon1024.png */; };
+		15AA1D902D6E151900A14E77 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */; };
 		15B1DBA3219E65E5000D9829 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */; };
 		BB01161A2CEDC8EC00716B6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0116192CEDC8EC00716B6C /* AppDelegate.swift */; };
 		BB01161D2CEDCDE900716B6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB01161C2CEDCDE900716B6C /* ViewController.swift */; };
@@ -206,6 +207,7 @@
 /* Begin PBXFileReference section */
 		154246AE219E7A030026517F /* HuaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HuaClassifier.mlmodel; sourceTree = "<group>"; };
 		154246B0219E99060026517F /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
+		15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		15B1DBA1219E65E5000D9829 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaiZhaoShiHua.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -725,6 +727,7 @@
 				BB01161E2CEDD77300716B6C /* HomeViewController.swift */,
 				BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */,
 				BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */,
+				15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */,
 			);
 			path = HomePageController;
 			sourceTree = "<group>";
@@ -1490,6 +1493,7 @@
 				F7FFD3E3219530C700433687 /* LZSqliteTool.m in Sources */,
 				F7FFD3F2219530C700433687 /* NSData+CommonCrypto.m in Sources */,
 				F7FFD4232195312300433687 /* LZTabBarController.m in Sources */,
+				15AA1D902D6E151900A14E77 /* DisplayViewController.swift in Sources */,
 				F7FFD33421951D4400433687 /* MainContentCell.m in Sources */,
 				F7FFD45A2195325C00433687 /* MASViewConstraint.m in Sources */,
 				F76109CC2181782000AD51BE /* SearchViewController.m in Sources */,

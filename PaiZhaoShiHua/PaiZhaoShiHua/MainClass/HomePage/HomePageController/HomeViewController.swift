@@ -127,7 +127,7 @@ class HomeViewController: UIViewController {
         let userMessage = ChatRequest.Message(
             role: "user",
             content: [
-                .init(text: "这是什么花，并详细介绍？需要有确定的相似度百分比"),
+                .init(text: "这是什么花，并详细介绍？给出明确种类"),
                 .init(imageUrl:imageUrl)
             ]
         )
@@ -143,6 +143,23 @@ class HomeViewController: UIViewController {
                 // 打印原始响应（实际使用时需要解码）
                 if let jsonString = String(data: responseData, encoding: .utf8) {
                     print("API Response: \(jsonString)")
+                
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                    }
+                    // 主线程执行UI操作
+                        DispatchQueue.main.async  {
+                            let displayVC = DisplayViewController()
+                            displayVC.responseText  = jsonString
+                            
+                            // 通过导航控制器跳转（需确保当前控制器已嵌入导航栈）
+//                            self.navigationController?.pushViewController(displayVC,  animated: true)
+                            
+                            // 如果无导航控制器，改用模态呈现（需手动添加返回按钮）
+                             let nav = UINavigationController(rootViewController: displayVC)
+                             self.present(nav,  animated: true)
+                        }
+                    
                 }
             } catch {
                 print("Request failed: \(error)")
@@ -151,13 +168,11 @@ class HomeViewController: UIViewController {
     }
   
     func uplodaImage(uiImage:UIImage){
-        SVProgressHUD.show(withStatus: "照片打包中...")
+        SVProgressHUD.show(withStatus: "分析中...")
 
-        AliyunOSSUpload.aliyunInit().upLoad(uiImage) {(obj: String?, objKey: String?) in
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-            }
-            print("======上传成功=============\(obj ?? "")=================\(objKey ?? "")")
+        AliyunOSSUpload.aliyunInit().upLoad(uiImage) {(obj: String?) in
+            
+            print("======上传成功=============" + (obj ?? "") ?? "")
             
             if let obj = obj {
                 self.shibiehua(imageUrl: obj)
@@ -196,7 +211,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         switch indexPath.row {
         case 0:
             let cameraVC = VisionCameraVC()
-                cameraVC.delegate = self
+//                cameraVC.delegate = self
+            cameraVC.onImageCaptured = { image in
+                self.uplodaImage(uiImage: image)
+            }
                 present(cameraVC, animated: true)
             print("拍照识别")
 //            let cameraVC = CameraViewController()
@@ -232,15 +250,15 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
 }
 
-extension HomeViewController: ImageProcessor {
-    nonisolated func processImage(_ image: UIImage) {
-        // 在这里实现您的图像识别逻辑
-        // 识别成功后会自动触发交互动画
-        Task { @MainActor in
-            uplodaImage(uiImage: image)
-        }
-    }
-}
+//extension HomeViewController: ImageProcessor {
+//    nonisolated func processImage(_ image: UIImage) {
+//        // 在这里实现您的图像识别逻辑
+//        // 识别成功后会自动触发交互动画
+////        Task { @MainActor in
+//            uplodaImage(uiImage: image)
+////        }
+//    }
+//}
 
     // MARK: - Custom Card Cell
 class CardCell: UICollectionViewCell {

@@ -96,41 +96,51 @@ static AliyunOSSUpload *_config;
 //}
 
 //上传单张图片
-- (void)upLoadImage:(UIImage *)selImage success:(UploadSuccessBlock) successBlock{
-//    UIImage *selImage = imageArr[0];
+- (void)upLoadImage:(UIImage *)selImage success:(UploadSuccessBlock)successBlock {
     NSData *data = UIImageJPEGRepresentation(selImage, 1);
-
-    OSSPutObjectRequest * put = [OSSPutObjectRequest new];
-    put.bucketName = OSS_Bucket;//后台返回的
-    //根据用户ID和时间戳来生成一段字符串 来保证图片的唯一性
-    NSString *timestr = [NSString stringWithFormat:@"%@",[AliyunOSSUpload getNowTimeTimestamp]];
-    //将后台返回的uploadFilePath和上面的字符串拼接在一起
-    put.objectKey = [NSString stringWithFormat:@"%@%@.wav",UserAudio_URL,timestr];
-    put.uploadingData = data; // 直接上传NSData
+    
+    OSSPutObjectRequest *put = [OSSPutObjectRequest new];
+    put.bucketName = OSS_Bucket;
+    
+    NSString *timestr = [NSString stringWithFormat:@"%@", [AliyunOSSUpload getNowTimeTimestamp]];
+    put.objectKey = [NSString stringWithFormat:@"%@%@.jpg", PostPicture_URL, timestr];
+    put.uploadingData = data;
+    
     put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
-                NSLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
-            
+        NSLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);
     };
 
-    OSSTask * putTask = [client putObject:put];
-   
-    [putTask continueWithBlock:^id(OSSTask *task) {
-    //缺少的就是这一步   里面的参数和上面一样
-          task = [client presignPublicURLWithBucketName:OSS_Bucket
-                                               withObjectKey:[NSString stringWithFormat:@"%@%@.wav",UserAudio_URL,timestr]];
+    OSSTask *putTask = [client putObject:put];
 
-                if (!task.error) {
-    //上传成功了,把图片URL地址传出去  task.result就是图片URL   传给自己服务器就好了
-                    if (successBlock) {
-                        successBlock(task.result,put.objectKey);
-                    }
-                } else {
-                    NSLog(@"upload object failed, error: %@" , task.error);
-                    [SVProgressHUD showErrorWithStatus:@"图片上传失败！"];
+    [putTask continueWithBlock:^id(OSSTask *task) {
+        if (task.error) {
+            NSLog(@"upload object failed, error: %@", task.error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD showErrorWithStatus:@"图片上传失败！"];
+            });
+            return nil;
+        }
+        
+        OSSTask *urlTask = [client presignPublicURLWithBucketName:OSS_Bucket
+                                                   withObjectKey:[NSString stringWithFormat:@"%@%@.jpg", PostPicture_URL, timestr]];
+        
+        if (!urlTask.error) {
+            NSLog(@"Upload success, URL: %@", urlTask.result);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (successBlock && urlTask.result) {
+                    successBlock(urlTask.result);
                 }
-                return nil;
-            }];
+            });
+        } else {
+            NSLog(@"Generate URL failed, error: %@", urlTask.error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD showErrorWithStatus:@"获取图片URL失败！"];
+            });
+        }
+        return nil;
+    }];
 }
+
 
 //上传多张图片
 - (void)upLoadImages:(NSArray *)imageArr success:(UploadImageArrsSuccessBlock) successBlock{
@@ -147,7 +157,7 @@ static AliyunOSSUpload *_config;
            //根据用户ID和时间戳来生成一段字符串 来保证图片的唯一性
         NSString *timestr = [NSString stringWithFormat:@"%@",[AliyunOSSUpload getNowTimeTimestamp]];
            //将后台返回的uploadFilePath和上面的字符串拼接在一起
-           put.objectKey = [NSString stringWithFormat:@"%@%@.wav",UserAudio_URL,timestr];
+           put.objectKey = [NSString stringWithFormat:@"%@%@.jpg",UserAudio_URL,timestr];
            put.uploadingData = data; // 直接上传NSData
            put.uploadProgress = ^(int64_t bytesSent, int64_t totalByteSent, int64_t totalBytesExpectedToSend) {
                        NSLog(@"%lld, %lld, %lld", bytesSent, totalByteSent, totalBytesExpectedToSend);

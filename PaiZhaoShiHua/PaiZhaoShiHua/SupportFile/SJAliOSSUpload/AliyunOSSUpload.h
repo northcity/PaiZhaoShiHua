@@ -10,7 +10,7 @@
 
 #define AliyunUpload                [AliyunOSSUpload aliyunInit]
 
-typedef void(^UploadSuccessBlock)(NSString *obj,NSString *objKey);
+typedef void(^UploadSuccessBlock)(NSString *obj);
 
 typedef void(^UploadImageArrsSuccessBlock)(NSString *obj,NSMutableArray *imageNamesArr);
 
