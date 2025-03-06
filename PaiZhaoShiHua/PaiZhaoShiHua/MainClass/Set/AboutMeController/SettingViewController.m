@@ -277,7 +277,7 @@ const CGFloat kStatusBarHeight = 20;
 
 //        [self loadAppStoreController];
         NSString *itunesurl = @"itms-apps://itunes.apple.com/cn/app/id1439881374?mt=8&action=write-review";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:itunesurl] options:nil completionHandler:nil];
         
     }
     

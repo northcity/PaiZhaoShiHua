@@ -10,6 +10,14 @@
 		154246AF219E7A030026517F /* HuaClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 154246AE219E7A030026517F /* HuaClassifier.mlmodel */; };
 		154246B1219E99060026517F /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 154246B0219E99060026517F /* icon1024.png */; };
 		15AA1D902D6E151900A14E77 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */; };
+		15AA1D952D73536D00A14E77 /* HistoryRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D932D73536D00A14E77 /* HistoryRecord.xcdatamodeld */; };
+		15AA1D972D7353BF00A14E77 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D962D7353BF00A14E77 /* CoreDataManager.swift */; };
+		15AA1D992D7354D800A14E77 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D982D7354D800A14E77 /* HistoryListViewController.swift */; };
+		15AA1D9B2D7354E800A14E77 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D9A2D7354E800A14E77 /* HistoryCell.swift */; };
+		15AA1D9D2D735E5C00A14E77 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D9C2D735E5C00A14E77 /* SearchViewController.swift */; };
+		15AA1D9F2D7360BC00A14E77 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D9E2D7360BC00A14E77 /* SettingsViewController.swift */; };
+		15AA1DA12D74AC6B00A14E77 /* UIViewController+TDCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1DA02D74AC6B00A14E77 /* UIViewController+TDCategory.swift */; };
+		15AA1DA52D7528EA00A14E77 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */; };
 		15B1DBA3219E65E5000D9829 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */; };
 		BB01161A2CEDC8EC00716B6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0116192CEDC8EC00716B6C /* AppDelegate.swift */; };
 		BB01161D2CEDCDE900716B6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB01161C2CEDCDE900716B6C /* ViewController.swift */; };
@@ -208,6 +216,14 @@
 		154246AE219E7A030026517F /* HuaClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HuaClassifier.mlmodel; sourceTree = "<group>"; };
 		154246B0219E99060026517F /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
+		15AA1D942D73536D00A14E77 /* HistoryRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryRecord.xcdatamodel; sourceTree = "<group>"; };
+		15AA1D962D7353BF00A14E77 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		15AA1D982D7354D800A14E77 /* HistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
+		15AA1D9A2D7354E800A14E77 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		15AA1D9C2D735E5C00A14E77 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		15AA1D9E2D7360BC00A14E77 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		15AA1DA02D74AC6B00A14E77 /* UIViewController+TDCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TDCategory.swift"; sourceTree = "<group>"; };
+		15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		15B1DBA1219E65E5000D9829 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaiZhaoShiHua.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -506,6 +522,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15AA1DA62D789FF900A14E77 /* NewPaiZhaoShiHua */ = {
+			isa = PBXGroup;
+			children = (
+				BB01161E2CEDD77300716B6C /* HomeViewController.swift */,
+				BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */,
+				BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */,
+				15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */,
+				15AA1D962D7353BF00A14E77 /* CoreDataManager.swift */,
+				15AA1D982D7354D800A14E77 /* HistoryListViewController.swift */,
+				15AA1D9A2D7354E800A14E77 /* HistoryCell.swift */,
+				15AA1D932D73536D00A14E77 /* HistoryRecord.xcdatamodeld */,
+				15AA1D9C2D735E5C00A14E77 /* SearchViewController.swift */,
+				15AA1D9E2D7360BC00A14E77 /* SettingsViewController.swift */,
+				15AA1DA02D74AC6B00A14E77 /* UIViewController+TDCategory.swift */,
+			);
+			path = NewPaiZhaoShiHua;
+			sourceTree = "<group>";
+		};
 		15B1DB9E219E6391000D9829 /* CoreML */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +673,7 @@
 				F76109C321806D8200AD51BE /* MainClass */,
 				BB0116192CEDC8EC00716B6C /* AppDelegate.swift */,
 				BB01161C2CEDCDE900716B6C /* ViewController.swift */,
+				BB01161B2CEDC8EE00716B6C /* PaiZhaoShiHua-Bridging-Header.h */,
 				F761098F2180695800AD51BE /* Main.storyboard */,
 				F76109952180695A00AD51BE /* Assets.xcassets */,
 				F76109972180695A00AD51BE /* LaunchScreen.storyboard */,
@@ -647,7 +682,7 @@
 				F7845562218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF */,
 				F761099A2180695A00AD51BE /* Info.plist */,
 				F76109922180695800AD51BE /* PaiZhaoShiHua.xcdatamodeld */,
-				BB01161B2CEDC8EE00716B6C /* PaiZhaoShiHua-Bridging-Header.h */,
+				15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */,
 			);
 			path = PaiZhaoShiHua;
 			sourceTree = "<group>";
@@ -718,16 +753,13 @@
 		F76109C521806DB200AD51BE /* HomePageController */ = {
 			isa = PBXGroup;
 			children = (
+				15AA1DA62D789FF900A14E77 /* NewPaiZhaoShiHua */,
 				F75DEC15219EA6A100DDABF0 /* LaunchViewController.h */,
 				F75DEC16219EA6A100DDABF0 /* LaunchViewController.m */,
 				F76109C621806DC300AD51BE /* HomePageViewController.h */,
 				F76109C721806DC300AD51BE /* HomePageViewController.m */,
 				F76109CA2181782000AD51BE /* SearchViewController.h */,
 				F76109CB2181782000AD51BE /* SearchViewController.m */,
-				BB01161E2CEDD77300716B6C /* HomeViewController.swift */,
-				BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */,
-				BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */,
-				15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */,
 			);
 			path = HomePageController;
 			sourceTree = "<group>";
@@ -1369,6 +1401,7 @@
 				F79841CE21998B8E005FB00E /* ARloading00.png in Resources */,
 				F79841E621998B8E005FB00E /* ARloading10.png in Resources */,
 				F79841D521998B8E005FB00E /* bgXXXX.png in Resources */,
+				15AA1DA52D7528EA00A14E77 /* PrivacyInfo.xcprivacy in Resources */,
 				F79841F021998B8E005FB00E /* icon-AR未开状态@2x.png in Resources */,
 				F79841DC21998B8E005FB00E /* ARloading07.png in Resources */,
 				F79841C521998B8E005FB00E /* rotating_UpLeft_out@3x.png in Resources */,
@@ -1453,10 +1486,12 @@
 				F7FFD4252195312300433687 /* FMDatabaseQueue.m in Sources */,
 				F7FFD32E21951CDE00433687 /* UIImage+ImageEffects.m in Sources */,
 				F7FFD33821951D6600433687 /* ZJViewShow.m in Sources */,
+				15AA1DA12D74AC6B00A14E77 /* UIViewController+TDCategory.swift in Sources */,
 				154246AF219E7A030026517F /* HuaClassifier.mlmodel in Sources */,
 				BB01161F2CEDD77300716B6C /* HomeViewController.swift in Sources */,
 				F7984216219ACDE3005FB00E /* GSLoadingAnimationView.m in Sources */,
 				F7FFD3E2219530C700433687 /* LZDataModel.m in Sources */,
+				15AA1D952D73536D00A14E77 /* HistoryRecord.xcdatamodeld in Sources */,
 				F7FFD3EB219530C700433687 /* LZStringTool.m in Sources */,
 				F7FFD4242195312300433687 /* LZTabBar.m in Sources */,
 				F79841662199755D005FB00E /* ZhiWuBaiKeViewController.m in Sources */,
@@ -1478,6 +1513,7 @@
 				F7FFD32A21951CDE00433687 /* ABMETableViewCell.m in Sources */,
 				F745E95E2193E14B0092244B /* ListModel.m in Sources */,
 				F745E9592193E0C40092244B /* AxcDrawPath.m in Sources */,
+				15AA1D9B2D7354E800A14E77 /* HistoryCell.swift in Sources */,
 				F7FFD4342195316600433687 /* LZBaseTableViewCell.m in Sources */,
 				F7FFD4272195312300433687 /* FMDatabase.m in Sources */,
 				F7FFD3EC219530C700433687 /* LZScreenTool.m in Sources */,
@@ -1486,6 +1522,7 @@
 				F7FFD41E2195312300433687 /* SVRadialGradientLayer.m in Sources */,
 				F76109C821806DC300AD51BE /* HomePageViewController.m in Sources */,
 				F7FFD4362195316600433687 /* LZBaseNavigationController.m in Sources */,
+				15AA1D992D7354D800A14E77 /* HistoryListViewController.swift in Sources */,
 				F7FFD34121951D7D00433687 /* RewardSuccessWindow.m in Sources */,
 				F7FFD3E9219530C700433687 /* LZSortTool.m in Sources */,
 				F7FFD4352195316600433687 /* LZBaseViewController.m in Sources */,
@@ -1495,6 +1532,8 @@
 				F7FFD4232195312300433687 /* LZTabBarController.m in Sources */,
 				15AA1D902D6E151900A14E77 /* DisplayViewController.swift in Sources */,
 				F7FFD33421951D4400433687 /* MainContentCell.m in Sources */,
+				15AA1D972D7353BF00A14E77 /* CoreDataManager.swift in Sources */,
+				15AA1D9D2D735E5C00A14E77 /* SearchViewController.swift in Sources */,
 				F7FFD45A2195325C00433687 /* MASViewConstraint.m in Sources */,
 				F76109CC2181782000AD51BE /* SearchViewController.m in Sources */,
 				F745E9572193E0C40092244B /* AxcCAAnimation.m in Sources */,
@@ -1516,6 +1555,7 @@
 				F7FFD4212195312300433687 /* SVIndefiniteAnimatedView.m in Sources */,
 				F745E9622193E3920092244B /* CellDrawView.m in Sources */,
 				BB01161A2CEDC8EC00716B6C /* AppDelegate.swift in Sources */,
+				15AA1D9F2D7360BC00A14E77 /* SettingsViewController.swift in Sources */,
 				F7FFD32921951CDE00433687 /* AboutViewController.m in Sources */,
 				F798416C21997D97005FB00E /* HWBaseWebViewController.m in Sources */,
 				F7FFD4652195580200433687 /* WaveView.m in Sources */,
@@ -1694,11 +1734,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development: xi chen (UTM49S4XG3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: xi chen (UTM49S4XG3)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = F7C352F4MW;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F7C352F4MW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PaiZhaoShiHua/SupportFile/PrefixHeader.pch";
 				INFOPLIST_FILE = PaiZhaoShiHua/Info.plist;
@@ -1707,10 +1747,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.paizhaoshihua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = paizhaoshihua_Dev;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = paizhaoshihua_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "PaiZhaoShiHua/PaiZhaoShiHua-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1725,11 +1765,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Distribution: xi chen (F7C352F4MW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: xi chen (F7C352F4MW)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = F7C352F4MW;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F7C352F4MW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PaiZhaoShiHua/SupportFile/PrefixHeader.pch";
 				INFOPLIST_FILE = PaiZhaoShiHua/Info.plist;
@@ -1738,10 +1778,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.paizhaoshihua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = paizhaoshihua;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = paizhaoshihua;
 				SWIFT_OBJC_BRIDGING_HEADER = "PaiZhaoShiHua/PaiZhaoShiHua-Bridging-Header.h";
 				SWIFT_VERSION = 6.0;
@@ -1865,6 +1905,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		15AA1D932D73536D00A14E77 /* HistoryRecord.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				15AA1D942D73536D00A14E77 /* HistoryRecord.xcdatamodel */,
+			);
+			currentVersion = 15AA1D942D73536D00A14E77 /* HistoryRecord.xcdatamodel */;
+			path = HistoryRecord.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		F76109922180695800AD51BE /* PaiZhaoShiHua.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

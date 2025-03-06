@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "HWBaseWebViewController.h"
 @interface ZhiWuBaiKeViewController : HWBaseWebViewController
-
+@property(nonatomic,strong)NSString *urlstring;
 @end

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0</string>
+	<string>2.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,9 +43,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>是否允许访问您的相机</string>
+	<string>需要使用相机拍摄花朵照片，通过AI智能识别花卉品种并提供养护指南</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>是否允许保存图片到相册</string>
+	<string>需要将植物识别结果和养护指南保存为图片到您的相册，方便随时查看</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>方正像素12.TTF</string>

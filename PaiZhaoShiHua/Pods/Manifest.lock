@@ -5,10 +5,6 @@ PODS:
   - DropDown (2.3.13)
   - HandyJSON (5.0.2)
   - HWPanModal (0.8.9)
-  - Kingfisher (6.3.1)
-  - KingfisherWebP (1.3.0):
-    - Kingfisher (~> 6.2)
-    - libwebp (>= 1.1.0)
   - libwebp (1.2.4):
     - libwebp/demux (= 1.2.4)
     - libwebp/mux (= 1.2.4)
@@ -26,9 +22,8 @@ PODS:
     - Localize-Swift/LocalizeSwiftCore
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
-  - MBProgressHUD (1.2.0)
   - SideMenu (6.5.0)
-  - SnapKit (5.0.1)
+  - SnapKit (5.7.1)
   - SnapKitExtend (1.1.0):
     - SnapKit
   - SSZipArchive (2.4.3)
@@ -36,6 +31,7 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftSVG (2.3.2)
+  - SwiftyMarkdown (1.2.4)
   - Toast-Swift (5.0.1)
   - WCDB.swift (2.0.2.5):
     - WCDB.swift/no-arc (= 2.0.2.5)
@@ -56,21 +52,19 @@ DEPENDENCIES:
   - AliyunOSSiOS (= 2.10.10)
   - BEMCheckBox (~> 1.4.1)
   - DropDown (~> 2.3.13)
-  - HandyJSON (~> 5.0.2)
+  - HandyJSON (= 5.0.2)
   - HWPanModal (~> 0.8.9)
-  - KingfisherWebP (~> 1.3.0)
   - libwebp (~> 1.2.1)
   - Localize-Swift (~> 3.2.0)
   - lottie-ios (~> 2.5.3)
   - Masonry
-  - MBProgressHUD (~> 1.2.0)
   - SideMenu (~> 6.5.0)
-  - SnapKit (~> 5.0.1)
+  - SnapKit (~> 5.7.1)
   - SnapKitExtend (~> 1.1.0)
   - SSZipArchive
-  - SVProgressHUD
   - SVProgressHUD (= 2.3.1)
   - SwiftSVG (~> 2.3.2)
+  - SwiftyMarkdown
   - Toast-Swift (~> 5.0.1)
   - WCDB.swift (~> 2.0.2.5)
   - WCDBOptimizedSQLCipher (= 1.4.1)
@@ -87,19 +81,17 @@ SPEC REPOS:
     - DropDown
     - HandyJSON
     - HWPanModal
-    - Kingfisher
-    - KingfisherWebP
     - libwebp
     - Localize-Swift
     - lottie-ios
     - Masonry
-    - MBProgressHUD
     - SideMenu
     - SnapKit
     - SnapKitExtend
     - SSZipArchive
     - SVProgressHUD
     - SwiftSVG
+    - SwiftyMarkdown
     - Toast-Swift
     - WCDB.swift
     - WCDBOptimizedSQLCipher
@@ -114,19 +106,17 @@ SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   HWPanModal: 259f6916c706b3f63003a325ad1bdfbe913b0fdc
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
-  KingfisherWebP: dec17a5eb1af2658791bde1f93ae9a853678f826
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
   Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SnapKitExtend: aa30cf37196195fae9c4354686cc7710184ebfcc
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
+  SwiftyMarkdown: 7cdec87c6ab5cd9ea0e22ced288e889960649ba5
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   WCDB.swift: 41d30d0e113cb2032947e34998f9eedc5c8cbd71
   WCDBOptimizedSQLCipher: 880ec8aa6cda6b27e4c72b30bf0cc01771deda6f
@@ -134,6 +124,6 @@ SPEC CHECKSUMS:
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 6af07d139f0cc8727a7271e26c9f453af80e8fe1
+PODFILE CHECKSUM: fd7e4563c3bd78ce6453cb5256223309ea2b4776
 
 COCOAPODS: 1.15.2

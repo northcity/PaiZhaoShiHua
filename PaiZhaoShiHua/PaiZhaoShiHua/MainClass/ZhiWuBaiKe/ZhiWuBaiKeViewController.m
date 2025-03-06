@@ -16,7 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.url = [NSURL URLWithString:@"https://baike.baidu.com"];
+    
+    
+    if (_urlstring.length > 0) {
+        self.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"https://baike.baidu.com/item/",self.urlstring]];
+    }else{
+        self.url = [NSURL URLWithString:@"https://baike.baidu.com"];
+    }
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -31,15 +38,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
