@@ -8,10 +8,8 @@
 
 import CoreData
 
-import CoreData
-
 class CoreDataManager {
-    @MainActor static let shared = CoreDataManager()
+    nonisolated(unsafe) static let shared = CoreDataManager()
     
     // 容器名称必须与数据模型文件完全一致
     private lazy var persistentContainer: NSPersistentContainer = {

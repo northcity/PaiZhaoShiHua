@@ -16,7 +16,7 @@ import SVProgressHUD
 //}
 
 extension UIViewController: @preconcurrency MFMailComposeViewControllerDelegate {
-    @MainActor  // 添加此标记
+//    @MainActor  // 添加此标记
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         // 方法实现
     }

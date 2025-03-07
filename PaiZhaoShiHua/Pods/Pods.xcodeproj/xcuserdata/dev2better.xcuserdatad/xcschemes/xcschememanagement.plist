@@ -116,6 +116,11 @@
 			<key>orderHint</key>
 			<integer>15</integer>
 		</dict>
+		<key>SnapKit-SnapKit_Privacy.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -136,6 +141,11 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>20</integer>
+		</dict>
+		<key>SwiftyMarkdown.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>29</integer>
 		</dict>
 		<key>Toast-Swift.xcscheme</key>
 		<dict>

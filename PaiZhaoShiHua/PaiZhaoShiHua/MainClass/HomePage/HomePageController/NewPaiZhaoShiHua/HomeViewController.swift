@@ -21,116 +21,141 @@ import AliyunOSSiOS
 
 class HomeViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Collection View Data Source & Delegate
+    private var collectionView: UICollectionView!
+    
+    // MARK: - Properties
+    private let items = [
+        ("leaf.fill", "拍照识花", "AI智能识别植物种类", UIColor(red: 0.3, green: 0.8, blue: 0.6, alpha: 1.0)),
+        ("book.closed.fill", "植物百科", "十万种植物资料库", UIColor(red: 0.5, green: 0.3, blue: 0.9, alpha: 1.0)),
+        ("photo.on.rectangle.fill", "识别记录", "您的植物发现历程", UIColor(red: 1.0, green: 0.6, blue: 0.3, alpha: 1.0)),
+        ("gearshape.fill", "偏好设置", "个性化您的体验", UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0))
+    ]
+    
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 配置基础视图
         configureBaseView()
-        // 创建标题
         setupTitle()
-        // 创建搜索栏
         setupModernSearch()
-        // 创建卡片网格
         setupCardGrid()
+        setupBottomDecoration()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateInterfaceElements()
+    }
+    
+    // MARK: - Setup Methods
     private func configureBaseView() {
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = UIColor(red: 0.97, green: 0.97, blue: 1.0, alpha: 1.0)
+        
+        let topDecoration = UIView()
+        topDecoration.backgroundColor = UIColor(red: 0.95, green: 0.85, blue: 1.0, alpha: 1.0)
+        topDecoration.layer.cornerRadius = 30
+        topDecoration.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
+        view.addSubview(topDecoration)
+        topDecoration.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(view.bounds.height * 0.15)
+        }
+        
         navigationItem.backButtonDisplayMode = .minimal
     }
     
     private func setupTitle() {
+        let titleContainer = UIView()
+        view.addSubview(titleContainer)
+        titleContainer.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(12)
+            $0.leading.equalToSuperview().offset(24)
+        }
+        
+        // 主标题
         let titleLabel = UILabel()
         titleLabel.text = "拍照识花"
-        titleLabel.font = UIFont.systemFont(ofSize: 34, weight: .heavy)
-        titleLabel.textColor = .label
-        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        titleLabel.textColor = UIColor(red: 0.4, green: 0.2, blue: 0.6, alpha: 1.0) // 深紫色
         
-        view.addSubview(titleLabel)
+        // 可爱图标
+        let iconImageView = UIImageView()
+        iconImageView.image = UIImage(systemName: "leaf.fill")
+        iconImageView.tintColor = UIColor(red: 0.5, green: 0.8, blue: 0.3, alpha: 1.0) // 绿色
+        iconImageView.contentMode = .scaleAspectFit
+        
+        // 添加到容器
+        titleContainer.addSubview(iconImageView)
+        titleContainer.addSubview(titleLabel)
+        
+        // 设置约束
+        iconImageView.snp.makeConstraints {
+            $0.leading.centerY.equalToSuperview()
+            $0.width.height.equalTo(36)
+        }
+        
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(10)
+            $0.centerY.equalToSuperview()
         }
     }
     
     private func setupModernSearch() {
-        let searchContainer = UITextField()
-//        searchContainer.searchBarStyle = .minimal
-        searchContainer.placeholder = "搜索花朵信息"
-        searchContainer.borderStyle = .bezel
-        searchContainer.returnKeyType = .search
-//        searchContainer.searchTextField.font = .preferredFont(forTextStyle: .body)
-//        searchContainer.searchTextField.backgroundColor = .quaternarySystemFill
-//        searchContainer.searchTextField.layer.cornerRadius = 14
-//        searchContainer.searchTextField.layer.cornerCurve = .continuous
-//        searchContainer.searchTextField.tintColor = .systemTeal
-        searchContainer.delegate = self  // 设置代理
-        searchContainer.clearButtonMode = .whileEditing
+        let searchContainer = UIView()
+        searchContainer.backgroundColor = UIColor.white
+        searchContainer.layer.cornerRadius = 20
+        searchContainer.layer.shadowColor = UIColor.black.withAlphaComponent(0.1).cgColor
+        searchContainer.layer.shadowOffset = CGSize(width: 0, height: 4)
+        searchContainer.layer.shadowRadius = 8
+        searchContainer.layer.shadowOpacity = 1
         
         view.addSubview(searchContainer)
         searchContainer.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(72)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.height.equalTo(50)
         }
-     
         
-//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//            guard let searchText = searchBar.text else { return }
-//            // 执行搜索操作（如过滤数据）
-////            performSearch(with: searchText)
-//            // 关闭键盘
-//            searchBar.resignFirstResponder()
-//        }
+        // 搜索图标
+        let searchIcon = UIImageView()
+        searchIcon.image = UIImage(systemName: "magnifyingglass")
+        searchIcon.tintColor = UIColor(red: 0.7, green: 0.3, blue: 0.9, alpha: 1.0) // 紫色
+        searchIcon.contentMode = .scaleAspectFit
         
-        // 实现搜索按钮点击事件[1,2](@ref)
-//        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//            guard let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces) else { return }
-//            searchBar.resignFirstResponder()  // 关闭键盘[4](@ref)
-//            
-//            let encyclopediaVC = ZhiWuBaiKeViewController()
-//            encyclopediaVC.urlstring = searchText
-//            present(encyclopediaVC, animated: true)
-//
-//            // 执行搜索逻辑
-////            performSearch(with: searchText)
-//        }
-//        
-//        
-//        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//            // 添加防抖逻辑（建议0.3秒延迟）
-//            let encyclopediaVC = ZhiWuBaiKeViewController()
-//            encyclopediaVC.urlstring = searchText
-//            present(encyclopediaVC, animated: true)
-//
-//        }
-    }
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        let encyclopediaVC = ZhiWuBaiKeViewController()
-        encyclopediaVC.urlstring = textField.text
-        present(encyclopediaVC, animated: true)
-        return true
+        searchContainer.addSubview(searchIcon)
+        searchIcon.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(15)
+            $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(20)
+        }
+        
+        // 输入框
+        let searchField = UITextField()
+        searchField.placeholder = "搜索花朵信息"
+        searchField.borderStyle = .none
+        searchField.returnKeyType = .search
+        searchField.font = UIFont.systemFont(ofSize: 16)
+        searchField.textColor = UIColor.darkGray
+        searchField.delegate = self
+        searchField.clearButtonMode = .whileEditing
+        
+        searchContainer.addSubview(searchField)
+        searchField.snp.makeConstraints {
+            $0.leading.equalTo(searchIcon.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().offset(-15)
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(40)
+        }
     }
     
     private func setupCardGrid() {
-        let items = [
-            ("camera.aperture", "拍照识花", "AI智能识别植物种类", UIColor.systemTeal),
-            ("books.vertical", "植物百科", "十万种植物资料库", UIColor.systemIndigo),
-            ("doc.text.image", "识别记录", "您的植物发现历程", UIColor.systemOrange),
-            ("gearshape", "偏好设置", "个性化您的体验", UIColor.systemGray)
-        ]
-        
-        let collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: createCollectionLayout()
-        )
-        
+        let layout = createCollectionLayout()
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         collectionView.register(CardCell.self, forCellWithReuseIdentifier: "CardCell")
-        collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.dataSource = self
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
@@ -160,10 +185,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         section.interGroupSpacing = 16
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0)
         
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.scrollDirection = .vertical
-        
-        return UICollectionViewCompositionalLayout(section: section, configuration: config)
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     func shibiehua(imageUrl:String,imageData:UIImage){
@@ -294,123 +316,266 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         return fileName
     }
     
+    private func setupBottomDecoration() {
+        // 创建底部装饰花朵图案
+        let flowerIcon1 = UIImageView(image: UIImage(systemName: "leaf.fill"))
+        flowerIcon1.tintColor = UIColor(red: 0.3, green: 0.8, blue: 0.4, alpha: 0.2)
+        flowerIcon1.contentMode = .scaleAspectFit
+        
+        let flowerIcon2 = UIImageView(image: UIImage(systemName: "flower"))
+        flowerIcon2.tintColor = UIColor(red: 0.9, green: 0.4, blue: 0.4, alpha: 0.2)
+        flowerIcon2.contentMode = .scaleAspectFit
+        
+        view.addSubview(flowerIcon1)
+        view.addSubview(flowerIcon2)
+        
+        flowerIcon1.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            $0.leading.equalToSuperview().offset(30)
+            $0.width.height.equalTo(50)
+        }
+        
+        flowerIcon2.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
+            $0.trailing.equalToSuperview().offset(-40)
+            $0.width.height.equalTo(40)
+        }
+    }
+    
+    // MARK: - Animation Methods
+    private func animateInterfaceElements() {
+        // 获取所有需要动画的视图元素
+        guard let titleContainer = view.subviews.first(where: { $0.subviews.contains(where: { $0 is UILabel && ($0 as? UILabel)?.text == "拍照识花" }) }),
+              let searchContainer = view.subviews.first(where: { $0.subviews.contains(where: { $0 is UITextField }) }) else {
+            return
+        }
+        
+        // 标题弹性出现
+        AnimationUtility.springInAnimation(for: titleContainer)
+        
+        // 搜索栏延迟后弹性出现
+        AnimationUtility.springInAnimation(for: searchContainer, delay: 0.1)
+        
+        // 卡片网格逐个出现
+        let visibleCells = collectionView.visibleCells
+        AnimationUtility.sequentialAnimation(for: visibleCells)
+    }
+    
+    // 统一的关闭按钮样式
+    private func addStyledCloseButton(to viewController: UIViewController) {
+        // 在 viewDidLoad 之后应用，避免覆盖 viewController 自己的设置
+        DispatchQueue.main.async {
+            // 创建圆形关闭按钮
+            let closeButton = UIButton(type: .custom)
+            closeButton.backgroundColor = UIColor.white.withAlphaComponent(0.9)
+            closeButton.layer.cornerRadius = 22
+            closeButton.layer.shadowColor = UIColor.black.cgColor
+            closeButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+            closeButton.layer.shadowRadius = 4
+            closeButton.layer.shadowOpacity = 0.2
+            
+            // 设置关闭图标
+            let configuration = UIImage.SymbolConfiguration(pointSize: 20, weight: .medium)
+            let closeImage = UIImage(systemName: "xmark.circle.fill", withConfiguration: configuration)
+            closeButton.setImage(closeImage, for: .normal)
+            closeButton.tintColor = UIColor(red: 0.6, green: 0.3, blue: 0.7, alpha: 1.0) // 与主题色一致的紫色
+            
+            // 添加到视图
+            viewController.view.addSubview(closeButton)
+            
+            // 设置约束
+            closeButton.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                closeButton.topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.topAnchor, constant: 16),
+                closeButton.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 16),
+                closeButton.widthAnchor.constraint(equalToConstant: 44),
+                closeButton.heightAnchor.constraint(equalToConstant: 44)
+            ])
+            
+            // 添加点击动画和触觉反馈
+//            closeButton.addTarget(viewController, action: #selector(UIViewController.dismissAnimated), for: .touchUpInside)
+            
+            // 添加按压反馈
+//            let pressInteraction = UIButtonPressInteraction()
+//            pressInteraction.onPress = { [weak closeButton, weak viewController] _ in
+//                guard let button = closeButton else { return }
+//                
+//                // 触发触觉反馈
+//                AnimationUtility.triggerHaptic(style: .light)
+//                
+//                // 按压动画
+//                UIView.animate(withDuration: 0.15, animations: {
+//                    button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+//                })
+//            }
+//            
+//            pressInteraction.onRelease = { [weak closeButton, weak viewController] _ in
+//                guard let button = closeButton, let vc = viewController else { return }
+//                
+//                // 释放动画
+//                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.2, options: [], animations: {
+//                    button.transform = .identity
+//                }, completion: { _ in
+//                    vc.dismiss(animated: true)
+//                })
+//            }
+            
+//            closeButton.addInteraction(pressInteraction)
+        }
+    }
+    
+    // 按钮按压交互类
+//    class UIButtonPressInteraction: UIInteraction {
+//        var onPress: ((UIButton) -> Void)?
+//        var onRelease: ((UIButton) -> Void)?
+//        
+//        override func willMove(to view: UIView?) {
+//            super.willMove(to: view)
+//            
+//            guard let button = view as? UIButton else { return }
+//            
+//            button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+//            button.addTarget(self, action: #selector(buttonTouchUpInside(_:)), for: .touchUpInside)
+//            button.addTarget(self, action: #selector(buttonTouchUpOutside(_:)), for: [.touchUpOutside, .touchCancel])
+//        }
+//        
+//        @objc private func buttonTouchDown(_ sender: UIButton) {
+//            onPress?(sender)
+//        }
+//        
+//        @objc private func buttonTouchUpInside(_ sender: UIButton) {
+//            onRelease?(sender)
+//        }
+//        
+//        @objc private func buttonTouchUpOutside(_ sender: UIButton) {
+//            UIView.animate(withDuration: 0.2) {
+//                sender.transform = .identity
+//            }
+//        }
+//    }
+    
+    // 添加扩展以便所有 ViewController 可以使用
+//    extension UIViewController {
+//        @objc func dismissAnimated() {
+//            AnimationUtility.triggerHaptic(style: .medium)
+//            dismiss(animated: true)
+//        }
+//    }
 }
 
-    // MARK: - CollectionView DataSource & Delegate
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCell
-        let items = [
-            ("camera.aperture", "拍照识花", "AI智能识别植物种类", UIColor.systemTeal),
-            ("books.vertical", "植物百科", "十万种植物资料库", UIColor.systemIndigo),
-            ("doc.text.image", "识别记录", "您的植物发现历程", UIColor.systemOrange),
-            ("gearshape", "偏好设置", "个性化您的体验", UIColor.systemGray)
-        ]
         cell.configure(with: items[indexPath.row])
         return cell
     }
-    
-    // 在 collectionView 的代理方法中补充：
+}
+
+// MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        // 触觉反馈增强用户体验
-        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
-        switch indexPath.row {
-        case 0:
-            let cameraVC = VisionCameraVC()
-//                cameraVC.delegate = self
-            cameraVC.onImageCaptured = { image in
-                self.uplodaImage(uiImage: image)
-            }
-                present(cameraVC, animated: true)
-            print("拍照识别")
-//            let cameraVC = CameraViewController()
-//            cameraVC.modalPresentationStyle = .fullScreen
-//            present(cameraVC, animated: true)
-        case 1:
-            print("1")
-            let encyclopediaVC = ZhiWuBaiKeViewController()
-            present(encyclopediaVC, animated: true)
-
-//            navigationController?.pushViewController(encyclopediaVC, animated: true)
-        case 2:
-            print("1")
-            let historyVC = HistoryListViewController()
-            present(historyVC, animated: true)
-//            showDetailViewController(historyVC, sender: self)
-        case 3:
-            print("1")
-            let encyclopediaVC = SettingsViewController()
-            present(encyclopediaVC, animated: true)
-//            let settingsVC = SettingsViewController()
-//            settingsVC.modalPresentationStyle = .formSheet
-//            present(settingsVC, animated: true)
-        default:
-            break
-        }
+        AnimationUtility.triggerHaptic(style: .light)
         
-        // 添加优雅的过渡动画
-        UIView.animate(withDuration: 0.3) {
-            collectionView.cellForItem(at: indexPath)?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.2) {
-                collectionView.cellForItem(at: indexPath)?.transform = .identity
+        AnimationUtility.pressAnimation(for: cell) { _ in
+            AnimationUtility.releaseAnimation(for: cell) { _ in
+                AnimationUtility.triggerHaptic(style: .rigid)
+                
+                switch indexPath.row {
+                case 0:
+                    let cameraVC = VisionCameraVC()
+                    cameraVC.modalPresentationStyle = .formSheet
+                    cameraVC.onImageCaptured = { [weak self] image in
+                        self?.handleCapturedImage(image)
+                    }
+                    self.present(cameraVC, animated: true)
+                case 1:
+                    let encyclopediaVC = ZhiWuBaiKeViewController()
+                    self.present(encyclopediaVC, animated: true)
+                case 2:
+                    let historyVC = HistoryListViewController()
+                    self.present(historyVC, animated: true)
+                case 3:
+                    let settingsVC = SettingsViewController()
+                    self.present(settingsVC, animated: true)
+                default:
+                    break
+                }
             }
         }
     }
     
-    
+    private func handleCapturedImage(_ image: UIImage) {
+        // 处理拍摄的图片
+        uplodaImage(uiImage: image)
+    }
 }
 
-//extension HomeViewController: ImageProcessor {
-//    nonisolated func processImage(_ image: UIImage) {
-//        // 在这里实现您的图像识别逻辑
-//        // 识别成功后会自动触发交互动画
-////        Task { @MainActor in
-//            uplodaImage(uiImage: image)
-////        }
+// MARK: - UITextFieldDelegate
+//extension HomeViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        let encyclopediaVC = ZhiWuBaiKeViewController()
+//        encyclopediaVC.urlstring = textField.text
+//        present(encyclopediaVC, animated: true)
+//        return true
 //    }
 //}
 
-    // MARK: - Custom Card Cell
+// MARK: - Custom Card Cell
 class CardCell: UICollectionViewCell {
     private let cardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .tertiarySystemBackground
+        view.backgroundColor = .white
         view.layer.cornerRadius = 24
         view.layer.cornerCurve = .continuous
-        view.layer.shadowColor = UIColor.label.cgColor
-        view.layer.shadowOpacity = 0.05
-        view.layer.shadowOffset = CGSize(width: 0, height: 6)
-        view.layer.shadowRadius = 12
+        
+        // 添加边框
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.systemGray5.cgColor
+        
+        // 优化阴影
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOffset = CGSize(width: 2, height: 6)
+        view.layer.shadowRadius = 10
+        return view
+    }()
+    
+    private let iconBackground: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 25
         return view
     }()
     
     private let iconView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.preferredSymbolConfiguration = .init(pointSize: 32, weight: .medium)
+        iv.preferredSymbolConfiguration = .init(pointSize: 28, weight: .medium)
+        iv.tintColor = .white
         return iv
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
-        label.textColor = .label
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .darkGray
         label.textAlignment = .center
         return label
     }()
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.textColor = .gray
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
@@ -424,71 +589,133 @@ class CardCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.addSubview(cardView)
-        cardView.addSubview(iconView)
+        cardView.addSubview(iconBackground)
+        iconBackground.addSubview(iconView)
         cardView.addSubview(titleLabel)
         cardView.addSubview(subtitleLabel)
         
         cardView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalToSuperview().inset(4)
+        }
+        
+        iconBackground.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(24)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(50)
         }
         
         iconView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(28)
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(40)
+            $0.center.equalToSuperview()
+            $0.size.equalTo(30)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(iconView.snp.bottom).offset(16)
+            $0.top.equalTo(iconBackground.snp.bottom).offset(12)
             $0.leading.trailing.equalToSuperview().inset(12)
         }
         
         subtitleLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(6)
             $0.leading.trailing.equalToSuperview().inset(12)
+            $0.bottom.lessThanOrEqualToSuperview().offset(-16)
         }
     }
     
+    func configure(with data: (icon: String, title: String, subtitle: String, color: UIColor)) {
+        iconView.image = UIImage(systemName: data.icon)
+        iconBackground.backgroundColor = data.color
+        titleLabel.text = data.title
+        subtitleLabel.text = data.subtitle
+        
+        // 设置卡片边框颜色
+        cardView.layer.borderColor = data.color.withAlphaComponent(0.3).cgColor
+    }
+    
+    // 增强按压效果
     private func setupInteractions() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        addGestureRecognizer(tapGesture)
+        
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handlePress(_:)))
-        longPress.minimumPressDuration = 0.1  // 关键修改：增加最小按压时间
-        longPress.cancelsTouchesInView = false  // 允许事件继续传递[1](@ref)
+        longPress.minimumPressDuration = 0.05
+        longPress.cancelsTouchesInView = false
         addGestureRecognizer(longPress)
+    }
+    
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        // 只需定义，实际由 collectionView delegate 处理
     }
     
     @objc private func handlePress(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
-        case .began, .changed:
-            animateScale(0.96)
+        case .began:
+            AnimationUtility.triggerHaptic(style: .light)
+            animateScale(0.92)
+        case .changed:
+            // 保持当前状态
+            break
         case .ended, .cancelled:
+            AnimationUtility.triggerHaptic(style: .light)
             animateScale(1.0)
-            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-        default: break
+        default:
+            break
         }
     }
     
     private func animateScale(_ scale: CGFloat) {
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       usingSpringWithDamping: 0.8,
-                       initialSpringVelocity: 0.5,
-                       options: [.allowUserInteraction, .curveEaseInOut],
-                       animations: {
-            self.transform = CGAffineTransform(scaleX: scale, y: scale)
-            self.cardView.layer.shadowOpacity = scale < 1 ? 0.1 : 0.05
-        })
+        // 使用 UIViewPropertyAnimator 代替 UIView.animate，性能更好
+        let animator = UIViewPropertyAnimator(
+            duration: 0.2,
+            dampingRatio: scale < 1 ? 0.7 : 0.6) {
+                self.transform = CGAffineTransform(scaleX: scale, y: scale)
+                
+                // 缩放时调整阴影效果，增强立体感
+                if scale < 1 {
+                    self.cardView.layer.shadowOffset = CGSize(width: 1, height: 3)
+                    self.cardView.layer.shadowOpacity = 0.15
+                } else {
+                    self.cardView.layer.shadowOffset = CGSize(width: 2, height: 6)
+                    self.cardView.layer.shadowOpacity = 0.1
+                }
+            }
+        
+        animator.startAnimation()
     }
     
-    func configure(with data: (icon: String, title: String, subtitle: String, color: UIColor)) {
-        if #available(iOS 15.0, *) {
-            iconView.image = UIImage(systemName: data.icon)?
-                .withConfiguration(UIImage.SymbolConfiguration(paletteColors: [data.color]))
-        } else {
-            // Fallback on earlier versions
-        }
-        titleLabel.text = data.title
-        subtitleLabel.text = data.subtitle
+    // 增加光泽高光效果，提升卡片质感
+    func addGlossEffect() {
+        // 创建渐变光泽层
+        let glossLayer = CAGradientLayer()
+        glossLayer.colors = [
+            UIColor.white.withAlphaComponent(0.0).cgColor,
+            UIColor.white.withAlphaComponent(0.2).cgColor,
+            UIColor.white.withAlphaComponent(0.0).cgColor
+        ]
+        glossLayer.locations = [0.0, 0.5, 1.0]
+        glossLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        glossLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        glossLayer.frame = bounds
+        glossLayer.cornerRadius = 24
+        glossLayer.masksToBounds = true
+        
+        // 添加到卡片视图
+        cardView.layer.addSublayer(glossLayer)
     }
+    
+    // 增强配置方法
+//    func configure(with data: (icon: String, title: String, subtitle: String, color: UIColor)) {
+//        iconView.image = UIImage(systemName: data.icon)
+//        iconBackground.backgroundColor = data.color
+//        titleLabel.text = data.title
+//        subtitleLabel.text = data.subtitle
+//        
+//        // 设置卡片边框和阴影颜色
+//        cardView.layer.borderColor = data.color.withAlphaComponent(0.3).cgColor
+//        cardView.layer.shadowColor = data.color.withAlphaComponent(0.4).cgColor
+//        
+//        // 添加微妙的光泽效果
+//        addGlossEffect()
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -544,4 +771,5 @@ class CardCell: UICollectionViewCell {
 //            }
 //        }
 //    }
+
 

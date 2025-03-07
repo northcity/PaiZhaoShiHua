@@ -25,6 +25,7 @@
 		BB52843F2D6D6DA600CF6405 /* PZShiBieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */; };
 		BB5284412D6DAC5400CF6405 /* VisionCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */; };
 		BB5284452D6DBC3B00CF6405 /* AliyunOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */; };
+		BB5284BA2D7AC9D300CF6405 /* AnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5284B82D7AC9D300CF6405 /* AnimationUtility.swift */; };
 		BD4E67E7EF4B9C5A878FF257 /* Pods_PaiZhaoShiHua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */; };
 		F745E9472193D5C60092244B /* 方正像素12.TTF in Resources */ = {isa = PBXBuildFile; fileRef = F745E9462193D5C60092244B /* 方正像素12.TTF */; };
 		F745E9572193E0C40092244B /* AxcCAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F745E94C2193E0C40092244B /* AxcCAAnimation.m */; };
@@ -235,6 +236,7 @@
 		BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionCameraVC.swift; sourceTree = "<group>"; };
 		BB5284422D6DBC3B00CF6405 /* AliyunOSSUpload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AliyunOSSUpload.h; sourceTree = "<group>"; };
 		BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AliyunOSSUpload.m; sourceTree = "<group>"; };
+		BB5284B82D7AC9D300CF6405 /* AnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtility.swift; sourceTree = "<group>"; };
 		CAE0640B83C670669E0BD094 /* Pods-PaiZhaoShiHua.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.debug.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.debug.xcconfig"; sourceTree = "<group>"; };
 		F4BA96BF3B0E58B810504F24 /* Pods-PaiZhaoShiHua.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.release.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.release.xcconfig"; sourceTree = "<group>"; };
 		F745E9462193D5C60092244B /* 方正像素12.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正像素12.TTF"; sourceTree = "<group>"; };
@@ -576,6 +578,14 @@
 			path = SJAliOSSUpload;
 			sourceTree = "<group>";
 		};
+		BB5284B92D7AC9D300CF6405 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BB5284B82D7AC9D300CF6405 /* AnimationUtility.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F745E9482193E0C30092244B /* AxcDrawPathPackage */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +718,7 @@
 		F76109BF21806C8E00AD51BE /* SupportFile */ = {
 			isa = PBXGroup;
 			children = (
+				BB5284B92D7AC9D300CF6405 /* Utils */,
 				BB5284442D6DBC3B00CF6405 /* SJAliOSSUpload */,
 				F75802AD219D093900F4E933 /* ChuLiImageManager.h */,
 				F75802AE219D093900F4E933 /* ChuLiImageManager.m */,
@@ -1486,6 +1497,7 @@
 				F7FFD4252195312300433687 /* FMDatabaseQueue.m in Sources */,
 				F7FFD32E21951CDE00433687 /* UIImage+ImageEffects.m in Sources */,
 				F7FFD33821951D6600433687 /* ZJViewShow.m in Sources */,
+				BB5284BA2D7AC9D300CF6405 /* AnimationUtility.swift in Sources */,
 				15AA1DA12D74AC6B00A14E77 /* UIViewController+TDCategory.swift in Sources */,
 				154246AF219E7A030026517F /* HuaClassifier.mlmodel in Sources */,
 				BB01161F2CEDD77300716B6C /* HomeViewController.swift in Sources */,
@@ -1734,12 +1746,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: xi chen (UTM49S4XG3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: xi chen (UTM49S4XG3)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = F7C352F4MW;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F7C352F4MW;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WKG7GKH7M7;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PaiZhaoShiHua/SupportFile/PrefixHeader.pch";
 				INFOPLIST_FILE = PaiZhaoShiHua/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1748,10 +1760,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.paizhaoshihua;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ceshi.ceshimainapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = paizhaoshihua_Dev;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = paizhaoshihua_Dev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = testwatchmianapp_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "PaiZhaoShiHua/PaiZhaoShiHua-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
