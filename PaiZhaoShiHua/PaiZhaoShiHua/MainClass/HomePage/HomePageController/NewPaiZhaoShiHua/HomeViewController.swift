@@ -19,6 +19,9 @@ import SnapKit
 import SVProgressHUD
 import AliyunOSSiOS
 
+
+var isPushed = false
+
 class HomeViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Collection View Data Source & Delegate
@@ -32,6 +35,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         ("gearshape.fill", "偏好设置", "个性化您的体验", UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0))
     ]
     
+    let searchField = UITextField()
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,51 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         setupModernSearch()
         setupCardGrid()
         setupBottomDecoration()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        // 监听首次数据到达，跳转到新页面
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFirstData(_:)), name: NSNotification.Name("StreamingUpdate"), object: nil)
+
+        
+    }
+    
+    
+    @objc private func handleFirstData(_ notification: Notification) {
+       
+        if isPushed {
+            return
+        }
+       
+        isPushed = true
+
+        SVProgressHUD.show(withStatus: "识别成功")
+        guard let content = notification.object as? String else { return }
+        
+        guard let image = self.imageData else { return }
+//        self.saveRecord(content: content, image: image)
+        
+        self.saveRecord(content: content, image: image) { [weak self] record in
+            guard let self = self, let record = record else {
+                SVProgressHUD.showError(withStatus: "保存失败")
+                return
+            }
+            
+            SVProgressHUD.showSuccess(withStatus: "识别成功")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                SVProgressHUD.dismiss()
+                print("收到首条数据，跳转界面")
+                DispatchQueue.main.async {
+                    let displayVC = DisplayViewController()
+                    displayVC.markdownContent = content
+                    displayVC.record = record
+                    displayVC.imageData = self.imageData
+                    self.present(displayVC, animated: true)
+                }
+            }
+        }
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -131,7 +181,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
         
         // 输入框
-        let searchField = UITextField()
         searchField.placeholder = "搜索花朵信息"
         searchField.borderStyle = .none
         searchField.returnKeyType = .search
@@ -140,6 +189,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         searchField.delegate = self
         searchField.clearButtonMode = .whileEditing
         
+        
         searchContainer.addSubview(searchField)
         searchField.snp.makeConstraints {
             $0.leading.equalTo(searchIcon.snp.trailing).offset(10)
@@ -147,6 +197,22 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             $0.centerY.equalToSuperview()
             $0.height.equalTo(40)
         }
+        
+        
+    }
+    
+    
+   
+    @objc func dismissKeyboard() {
+        searchField.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let encyclopediaVC = ZhiWuBaiKeViewController()
+        encyclopediaVC.urlstring = textField.text
+        present(encyclopediaVC, animated: true)
+        return true
     }
     
     private func setupCardGrid() {
@@ -188,16 +254,28 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         return UICollectionViewCompositionalLayout(section: section)
     }
     
+    var imageData:UIImage?
+    
     func shibiehua(imageUrl:String,imageData:UIImage){
+        
+        DashScopeAPI.shared.sendMessage(withText: "识别图中的植物，并详细专业介绍所有信息？字数不少于1000字", imageURL: imageUrl, isStreaming: true)
+        self.imageData = imageData
+ 
+        
+        return
+        
+        
         // MARK: - 使用示例
         let userMessage = ChatRequest.Message(
             role: "user",
             content: [
-                .init(text: "这是什么植物，详细介绍？"),
+                .init(text: "识别途中的植物，并详细专业介绍所有信息？"),
                 .init(imageUrl:imageUrl)
             ]
         )
         
+        print("=========请求开始时间戳\(Date().timeIntervalSince1970)")
+
         Task {
             do {
                 let responseData = try await sendChatRequest(
@@ -206,28 +284,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                     messages: [userMessage]
                 )
                 
-                // 打印原始响应（实际使用时需要解码）
-//                if let jsonString = String(data: responseData, encoding: .utf8) {
-//                    print("API Response: \(jsonString)")
-//                
-//                    
-//                    DispatchQueue.main.async {
-//                        SVProgressHUD.dismiss()
-//                    }
-//                    // 主线程执行UI操作
-//                        DispatchQueue.main.async  {
-//                            let displayVC = DisplayViewController()
-//                            displayVC.responseText  = jsonString
-//                            
-//                            // 通过导航控制器跳转（需确保当前控制器已嵌入导航栈）
-////                            self.navigationController?.pushViewController(displayVC,  animated: true)
-//                            
-//                            // 如果无导航控制器，改用模态呈现（需手动添加返回按钮）
-//                             let nav = UINavigationController(rootViewController: displayVC)
-//                             self.present(nav,  animated: true)
-//                        }
-//                    
-//                }
+                print("=========请求成功时间戳\(Date().timeIntervalSince1970)")
                 
                 if let jsonString = String(data: responseData, encoding: .utf8) {
                     // 解析 JSON 获取 content
@@ -237,7 +294,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                         
                         let image = imageData
                         let content = content
-                        saveRecord(content: content, image: image)
+//                        saveRecord(content: content, image: image)
 
                         SVProgressHUD.show(withStatus: "识别成功")
 
@@ -272,36 +329,247 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     func uplodaImage(uiImage:UIImage){
         SVProgressHUD.show(withStatus: "分析中...")
 
-        AliyunOSSUpload.aliyunInit().upLoad(uiImage) {(obj: String?) in
-            
-            print("======上传成功=============" + (obj ?? "") ?? "")
-            
+        // 压缩图片到 500KB 以内
+        // 先调整图片尺寸，再压缩 JPEG 质量
+           guard let resizedImage = resizeImageIfNeeded(uiImage, maxFileSizeKB: 500),
+                 let compressedImageData = compressImage(resizedImage, toMaxSizeKB: 500),
+                 let compressedImage = UIImage(data: compressedImageData) else {
+               SVProgressHUD.showError(withStatus: "图片处理失败")
+               return
+           }
+        
+        print("最终压缩后图片大小: \(compressedImageData.count / 1024) KB") // 打印最终图片大小
+        
+        
+        AliyunOSSUpload.aliyunInit().upLoad(compressedImage) {(obj: String?) in
             if let obj = obj {
-                SVProgressHUD.show(withStatus: "识别中...")
+                SVProgressHUD.show(withStatus: "AI识别中...")
                 self.shibiehua(imageUrl: obj, imageData: uiImage)
             }
         }
         
     }
     
-    func saveRecord(content: String, image: UIImage) {
-        // 创建新记录
-        let newRecord = HistoryRecord(context: CoreDataManager.shared.context)
-        newRecord.id = UUID()
-        newRecord.content = content
-        newRecord.createDate = Date()
+    // **步骤 1：调整图片尺寸**
+    func resizeImageIfNeeded(_ image: UIImage, maxFileSizeKB: Int) -> UIImage? {
+        var newSize = image.size
+        var scale: CGFloat = 1.0
+        let maxSizeBytes = maxFileSizeKB * 1024
+
+        // 计算初始 JPEG 质量为 0.8 时的大小
+        if let data = image.jpegData(compressionQuality: 0.8), data.count > maxSizeBytes {
+            scale = sqrt(CGFloat(maxSizeBytes) / CGFloat(data.count)) // 计算缩放比例
+            newSize = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+        }
+
+        // 开始缩小图片
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0) // 保持屏幕缩放比例
+        image.draw(in: CGRect(origin: .zero, size: newSize))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        print("调整后图片尺寸: \(newSize.width) x \(newSize.height)")
+        return resizedImage
+    }
+
+    // **步骤 2：JPEG 质量压缩**
+    func compressImage(_ image: UIImage, toMaxSizeKB maxSizeKB: Int) -> Data? {
+        let maxSize = maxSizeKB * 1024
+        var compression: CGFloat = 1.0
+        var min: CGFloat = 0.0
+        var max: CGFloat = 1.0
+        var bestData: Data?
+
+        for _ in 0..<6 { // 进行 6 次二分搜索以找到最合适的压缩比例
+            if let data = image.jpegData(compressionQuality: compression) {
+                print("当前压缩比: \(compression), 图片大小: \(data.count / 1024) KB")
+                if data.count < maxSize {
+                    bestData = data
+                    min = compression // 增加压缩质量
+                } else {
+                    max = compression // 降低压缩质量
+                }
+            }
+            compression = (min + max) / 2
+        }
+
+        return bestData
+    }
+
+    
+//    // 压缩图片到目标大小（单位 KB）
+//    // **步骤 2：JPEG 质量压缩**
+//    func compressImage(_ image: UIImage, toMaxSizeKB maxSizeKB: Int) -> Data? {
+//        let maxSize = maxSizeKB * 1024
+//        var compression: CGFloat = 1.0
+//        var min: CGFloat = 0.0
+//        var max: CGFloat = 1.0
+//        var bestData: Data?
+//
+//        for _ in 0..<6 { // 进行 6 次二分搜索以找到最合适的压缩比例
+//            if let data = image.jpegData(compressionQuality: compression) {
+//                print("当前压缩比: \(compression), 图片大小: \(data.count / 1024) KB")
+//                if data.count < maxSize {
+//                    bestData = data
+//                    min = compression // 增加压缩质量
+//                } else {
+//                    max = compression // 降低压缩质量
+//                }
+//            }
+//            compression = (min + max) / 2
+//        }
+//
+//        return bestData
+//    }
+    
+//    func uplodaImage(uiImage: UIImage) {
+//        SVProgressHUD.show(withStatus: "分析中...")
+//
+//        // 使用压缩方法（参数可配置）
+//        guard let compressedImage = compressImageToMaxSize(uiImage,
+//                                                         maxSizeKB: 512,
+//                                                         maxWidth: 1024,
+//                                                         maxHeight: 1024) else {
+//            SVProgressHUD.showError(withStatus: "图片压缩失败")
+//            return
+//        }
+//
+//        AliyunOSSUpload.aliyunInit().upLoad(compressedImage) { (obj: String?) in
+//            print("======上传成功============= \(obj ?? "")")
+//            
+//            if let obj = obj {
+//                SVProgressHUD.show(withStatus: "识别中...")
+//                self.shibiehua(imageUrl: obj, imageData: compressedImage)
+//            }
+//        }
+//    }
+
+    // 核心压缩方法（参数化配置）
+    func compressImageToMaxSize(_ image: UIImage,
+                               maxSizeKB: Int,
+                               maxWidth: CGFloat,
+                               maxHeight: CGFloat) -> UIImage? {
+        let maxBytes = maxSizeKB * 1024
+        var currentImage = image
+        var currentData: Data?
         
-        // 保存图片到文件系统
-        let imagePath = saveImageToDisk(image: image)
-        newRecord.imagePath = imagePath
+        // 阶段1：尺寸压缩
+        let originalSize = image.size
+        let widthRatio = maxWidth / originalSize.width
+        let heightRatio = maxHeight / originalSize.height
+        let targetRatio = min(min(widthRatio, heightRatio), 1.0)
         
-        // 在需要保存的地方调用
-        DispatchQueue.global(qos: .background).async {
-            // 通过主线程执行保存
-            DispatchQueue.main.async {
-                CoreDataManager.shared.saveContext()
+        if targetRatio < 1.0 {
+            let newSize = CGSize(width: originalSize.width * targetRatio,
+                               height: originalSize.height * targetRatio)
+            UIGraphicsBeginImageContextWithOptions(newSize, true, 1.0)
+            image.draw(in: CGRect(origin: .zero, size: newSize))
+            currentImage = UIGraphicsGetImageFromCurrentImageContext() ?? image
+            UIGraphicsEndImageContext()
+        }
+        
+        // 阶段2：质量压缩
+        var quality: CGFloat = 0.8
+        repeat {
+            currentData = currentImage.jpegData(compressionQuality: quality)
+            quality -= 0.05
+        } while (currentData?.count ?? Int.max) > maxBytes && quality > 0.1
+        
+        // 最终验证
+        guard let validData = currentData, validData.count <= maxBytes else {
+            return nil
+        }
+      
+        let compressedSizeKB = Double(validData.count) / 1024.0
+
+        
+        print("压缩后图片大小：\(String(format: "%.2f", compressedSizeKB)) KB")
+
+        
+        return UIImage(data: validData)
+    }
+    
+    
+//    func saveRecord(content: String, image: UIImage) {
+//        // 创建新记录
+//        let newRecord = HistoryRecord(context: CoreDataManager.shared.context)
+//        newRecord.id = UUID()
+//        newRecord.content = content
+//        newRecord.createDate = Date()
+//        
+//        // 保存图片到文件系统
+//        let imagePath = saveImageToDisk(image: image)
+////        newRecord.imagePath = imagePath
+//        
+//        // 在需要保存的地方调用
+//        DispatchQueue.global(qos: .background).async {
+//            // 通过主线程执行保存
+//            DispatchQueue.main.async {
+//                CoreDataManager.shared.saveContext()
+//            }
+//        }
+//    }
+    
+    func saveRecord(content: String, image: UIImage, completion: @escaping (HistoryRecord?) -> Void) {
+        // 确保在主线程执行 CoreData 操作
+        DispatchQueue.main.async {
+            // 创建记录对象
+            let context = CoreDataManager.shared.context
+            let newRecord = HistoryRecord(context: context)
+            newRecord.id = UUID()
+            newRecord.content = content
+            newRecord.createDate = Date()
+            
+            // 保存图片（包含错误处理）
+            guard let imageData = image.jpegData(compressionQuality: 0.8) else {
+                context.delete(newRecord)
+                completion(nil)
+                return
+            }
+            
+            // 异步保存图片防止阻塞主线程
+            DispatchQueue.global(qos: .utility).async {
+                let imagePath: String?
+                do {
+                    imagePath = try self.saveImageToDisk(data: imageData)
+                } catch {
+                    print("图片保存失败: \(error)")
+                    imagePath = nil
+                }
+                
+                // 回到主线程处理结果
+                DispatchQueue.main.async {
+                    guard let validPath = imagePath else {
+                        context.delete(newRecord)
+                        completion(nil)
+                        return
+                    }
+                    
+                    newRecord.imagePath = validPath
+                    
+                    // 最终保存上下文
+                    do {
+                        try context.save()
+                        completion(newRecord)
+                    } catch {
+                        print("CoreData 保存失败: \(error)")
+                        context.delete(newRecord)
+                        completion(nil)
+                    }
+                }
             }
         }
+    }
+
+    private func saveImageToDisk(data: Data) throws -> String {
+        let fileName = "\(UUID().uuidString).jpg"
+        guard let documentsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            throw NSError(domain: "FileError", code: 404, userInfo: [NSLocalizedDescriptionKey: "文档目录未找到"])
+        }
+        
+        let fileURL = documentsDir.appendingPathComponent(fileName)
+        try data.write(to: fileURL)
+        return fileName  // 只返回相对路径
     }
 
     private func saveImageToDisk(image: UIImage) -> String {
@@ -483,11 +751,11 @@ extension HomeViewController: UICollectionViewDelegate {
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
-        AnimationUtility.triggerHaptic(style: .light)
+//        AnimationUtility.triggerHaptic(style: .light)
         
-        AnimationUtility.pressAnimation(for: cell) { _ in
-            AnimationUtility.releaseAnimation(for: cell) { _ in
-                AnimationUtility.triggerHaptic(style: .rigid)
+//        AnimationUtility.pressAnimation(for: cell) { _ in
+//            AnimationUtility.releaseAnimation(for: cell) { _ in
+//                AnimationUtility.triggerHaptic(style: .rigid)
                 
                 switch indexPath.row {
                 case 0:
@@ -509,8 +777,8 @@ extension HomeViewController: UICollectionViewDelegate {
                 default:
                     break
                 }
-            }
-        }
+//            }
+//        }
     }
     
     private func handleCapturedImage(_ image: UIImage) {

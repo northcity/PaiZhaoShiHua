@@ -18,6 +18,7 @@
 		15AA1D9F2D7360BC00A14E77 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1D9E2D7360BC00A14E77 /* SettingsViewController.swift */; };
 		15AA1DA12D74AC6B00A14E77 /* UIViewController+TDCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1DA02D74AC6B00A14E77 /* UIViewController+TDCategory.swift */; };
 		15AA1DA52D7528EA00A14E77 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */; };
+		15AA1DC72D7C84D800A14E77 /* DashScopeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AA1DC62D7C84D800A14E77 /* DashScopeAPI.swift */; };
 		15B1DBA3219E65E5000D9829 /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */; };
 		BB01161A2CEDC8EC00716B6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0116192CEDC8EC00716B6C /* AppDelegate.swift */; };
 		BB01161D2CEDCDE900716B6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB01161C2CEDCDE900716B6C /* ViewController.swift */; };
@@ -225,6 +226,7 @@
 		15AA1D9E2D7360BC00A14E77 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		15AA1DA02D74AC6B00A14E77 /* UIViewController+TDCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TDCategory.swift"; sourceTree = "<group>"; };
 		15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		15AA1DC62D7C84D800A14E77 /* DashScopeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashScopeAPI.swift; sourceTree = "<group>"; };
 		15B1DBA1219E65E5000D9829 /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utils.h"; sourceTree = "<group>"; };
 		15B1DBA2219E65E5000D9829 /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utils.m"; sourceTree = "<group>"; };
 		3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaiZhaoShiHua.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -529,6 +531,7 @@
 			children = (
 				BB01161E2CEDD77300716B6C /* HomeViewController.swift */,
 				BB52843E2D6D6DA600CF6405 /* PZShiBieManager.swift */,
+				15AA1DC62D7C84D800A14E77 /* DashScopeAPI.swift */,
 				BB5284402D6DAC5400CF6405 /* VisionCameraVC.swift */,
 				15AA1D8F2D6E151900A14E77 /* DisplayViewController.swift */,
 				15AA1D962D7353BF00A14E77 /* CoreDataManager.swift */,
@@ -1509,6 +1512,7 @@
 				F79841662199755D005FB00E /* ZhiWuBaiKeViewController.m in Sources */,
 				F75802AF219D093900F4E933 /* ChuLiImageManager.m in Sources */,
 				F7FFD3EE219530C700433687 /* LZColorTool.m in Sources */,
+				15AA1DC72D7C84D800A14E77 /* DashScopeAPI.swift in Sources */,
 				F7FFD4572195325C00433687 /* NSArray+MASAdditions.m in Sources */,
 				F7FFD3E5219530C700433687 /* LZDocument.m in Sources */,
 				F745E9582193E0C40092244B /* AxcPolarAxis.m in Sources */,
@@ -1747,11 +1751,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F7C352F4MW;
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WKG7GKH7M7;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F7C352F4MW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PaiZhaoShiHua/SupportFile/PrefixHeader.pch";
 				INFOPLIST_FILE = PaiZhaoShiHua/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -1759,14 +1763,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ceshi.ceshimainapp;
+				MARKETING_VERSION = 2.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.paizhaoshihua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = paizhaoshihua_Dev;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = testwatchmianapp_Dev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = paizhaoshihua_Dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "PaiZhaoShiHua/PaiZhaoShiHua-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1780,7 +1784,7 @@
 				CODE_SIGN_IDENTITY = "Apple Distribution: xi chen (F7C352F4MW)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: xi chen (F7C352F4MW)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F7C352F4MW;
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F7C352F4MW;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PaiZhaoShiHua/SupportFile/PrefixHeader.pch";
@@ -1790,13 +1794,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.chenxi.paizhaoshihua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = paizhaoshihua;
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = paizhaoshihua;
 				SWIFT_OBJC_BRIDGING_HEADER = "PaiZhaoShiHua/PaiZhaoShiHua-Bridging-Header.h";
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

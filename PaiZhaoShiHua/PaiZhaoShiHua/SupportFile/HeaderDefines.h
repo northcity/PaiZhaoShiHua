@@ -13,6 +13,10 @@
 #import <Social/Social.h> // 导入苹果自带分享的头文件
 
 ///阿里云OSS配置
+///
+///
+#define tongyikey  @""
+
 #define AccessKeyId  @""
 #define AccessKeySecret @""
 #define OSS_Bucket @"lajifenleipic"
