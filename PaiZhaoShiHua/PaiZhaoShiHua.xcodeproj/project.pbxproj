@@ -28,7 +28,6 @@
 		BB5284452D6DBC3B00CF6405 /* AliyunOSSUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5284432D6DBC3B00CF6405 /* AliyunOSSUpload.m */; };
 		BB5284BA2D7AC9D300CF6405 /* AnimationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5284B82D7AC9D300CF6405 /* AnimationUtility.swift */; };
 		BD4E67E7EF4B9C5A878FF257 /* Pods_PaiZhaoShiHua.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7D54541DCD6A10FF7988F0 /* Pods_PaiZhaoShiHua.framework */; };
-		F745E9472193D5C60092244B /* 方正像素12.TTF in Resources */ = {isa = PBXBuildFile; fileRef = F745E9462193D5C60092244B /* 方正像素12.TTF */; };
 		F745E9572193E0C40092244B /* AxcCAAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F745E94C2193E0C40092244B /* AxcCAAnimation.m */; };
 		F745E9582193E0C40092244B /* AxcPolarAxis.m in Sources */ = {isa = PBXBuildFile; fileRef = F745E9512193E0C40092244B /* AxcPolarAxis.m */; };
 		F745E9592193E0C40092244B /* AxcDrawPath.m in Sources */ = {isa = PBXBuildFile; fileRef = F745E9522193E0C40092244B /* AxcDrawPath.m */; };
@@ -45,7 +44,6 @@
 		F76109B12180695A00AD51BE /* PaiZhaoShiHuaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F76109B02180695A00AD51BE /* PaiZhaoShiHuaUITests.m */; };
 		F76109C821806DC300AD51BE /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76109C721806DC300AD51BE /* HomePageViewController.m */; };
 		F76109CC2181782000AD51BE /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F76109CB2181782000AD51BE /* SearchViewController.m */; };
-		F7845563218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF in Resources */ = {isa = PBXBuildFile; fileRef = F7845562218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF */; };
 		F79841662199755D005FB00E /* ZhiWuBaiKeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79841652199755D005FB00E /* ZhiWuBaiKeViewController.m */; };
 		F798416B21997D97005FB00E /* 使用说明.txt in Resources */ = {isa = PBXBuildFile; fileRef = F798416921997D97005FB00E /* 使用说明.txt */; };
 		F798416C21997D97005FB00E /* HWBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F798416A21997D97005FB00E /* HWBaseWebViewController.m */; };
@@ -128,7 +126,6 @@
 		F798420C21998B8E005FB00E /* bg_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F79841C121998B8E005FB00E /* bg_circle@2x.png */; };
 		F798420D21998B8E005FB00E /* icon-未开灯状态@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F79841C221998B8E005FB00E /* icon-未开灯状态@3x.png */; };
 		F7984216219ACDE3005FB00E /* GSLoadingAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7984215219ACDE3005FB00E /* GSLoadingAnimationView.m */; };
-		F7BD246421915C1400A1C549 /* 方正榜书行简体.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7BD246321915C1400A1C549 /* 方正榜书行简体.ttf */; };
 		F7FFD32921951CDE00433687 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FFD31D21951CDE00433687 /* AboutViewController.m */; };
 		F7FFD32A21951CDE00433687 /* ABMETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FFD31E21951CDE00433687 /* ABMETableViewCell.m */; };
 		F7FFD32B21951CDE00433687 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7FFD32121951CDE00433687 /* Factory.m */; };
@@ -241,7 +238,6 @@
 		BB5284B82D7AC9D300CF6405 /* AnimationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUtility.swift; sourceTree = "<group>"; };
 		CAE0640B83C670669E0BD094 /* Pods-PaiZhaoShiHua.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.debug.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.debug.xcconfig"; sourceTree = "<group>"; };
 		F4BA96BF3B0E58B810504F24 /* Pods-PaiZhaoShiHua.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaiZhaoShiHua.release.xcconfig"; path = "Target Support Files/Pods-PaiZhaoShiHua/Pods-PaiZhaoShiHua.release.xcconfig"; sourceTree = "<group>"; };
-		F745E9462193D5C60092244B /* 方正像素12.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正像素12.TTF"; sourceTree = "<group>"; };
 		F745E9492193E0C30092244B /* AxcDrawPathTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcDrawPathTool.h; sourceTree = "<group>"; };
 		F745E94B2193E0C40092244B /* AxcCAAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxcCAAnimation.h; sourceTree = "<group>"; };
 		F745E94C2193E0C40092244B /* AxcCAAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxcCAAnimation.m; sourceTree = "<group>"; };
@@ -279,7 +275,6 @@
 		F76109C721806DC300AD51BE /* HomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		F76109CA2181782000AD51BE /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		F76109CB2181782000AD51BE /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
-		F7845562218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正清刻本悦宋简体.TTF"; sourceTree = "<group>"; };
 		F79841642199755D005FB00E /* ZhiWuBaiKeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhiWuBaiKeViewController.h; sourceTree = "<group>"; };
 		F79841652199755D005FB00E /* ZhiWuBaiKeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZhiWuBaiKeViewController.m; sourceTree = "<group>"; };
 		F798416821997D97005FB00E /* HWBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWBaseWebViewController.h; sourceTree = "<group>"; };
@@ -367,7 +362,6 @@
 		F79841C221998B8E005FB00E /* icon-未开灯状态@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-未开灯状态@3x.png"; sourceTree = "<group>"; };
 		F7984214219ACDE3005FB00E /* GSLoadingAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSLoadingAnimationView.h; sourceTree = "<group>"; };
 		F7984215219ACDE3005FB00E /* GSLoadingAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSLoadingAnimationView.m; sourceTree = "<group>"; };
-		F7BD246321915C1400A1C549 /* 方正榜书行简体.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "方正榜书行简体.ttf"; sourceTree = "<group>"; };
 		F7FFD31D21951CDE00433687 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		F7FFD31E21951CDE00433687 /* ABMETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABMETableViewCell.m; sourceTree = "<group>"; };
 		F7FFD31F21951CDE00433687 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -690,9 +684,6 @@
 				F761098F2180695800AD51BE /* Main.storyboard */,
 				F76109952180695A00AD51BE /* Assets.xcassets */,
 				F76109972180695A00AD51BE /* LaunchScreen.storyboard */,
-				F745E9462193D5C60092244B /* 方正像素12.TTF */,
-				F7BD246321915C1400A1C549 /* 方正榜书行简体.ttf */,
-				F7845562218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF */,
 				F761099A2180695A00AD51BE /* Info.plist */,
 				F76109922180695800AD51BE /* PaiZhaoShiHua.xcdatamodeld */,
 				15AA1DA42D7528EA00A14E77 /* PrivacyInfo.xcprivacy */,
@@ -1329,7 +1320,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F745E9472193D5C60092244B /* 方正像素12.TTF in Resources */,
 				F79841DF21998B8E005FB00E /* ARloading12.png in Resources */,
 				F79841EB21998B8E005FB00E /* icon-加载状态@2x.png in Resources */,
 				F79841D421998B8E005FB00E /* ARloading02.png in Resources */,
@@ -1360,7 +1350,6 @@
 				F7FFD33321951D4400433687 /* MainContentCell.xib in Resources */,
 				F79841FB21998B8E005FB00E /* bg@3x.png in Resources */,
 				F798420021998B8E005FB00E /* rotating_downLeft_out@3x.png in Resources */,
-				F7845563218D79AC00D6C44C /* 方正清刻本悦宋简体.TTF in Resources */,
 				F79841E921998B8E005FB00E /* ARloading11.png in Resources */,
 				F79841ED21998B8E005FB00E /* ARloading08.png in Resources */,
 				F7FFD33F21951D7D00433687 /* success_star@2x.png in Resources */,
@@ -1403,7 +1392,6 @@
 				F79841E121998B8E005FB00E /* 系统繁忙@3x.png in Resources */,
 				F79841FC21998B8E005FB00E /* 无网络@2x.png in Resources */,
 				F7FFD42A2195312300433687 /* address_select@2x.png in Resources */,
-				F7BD246421915C1400A1C549 /* 方正榜书行简体.ttf in Resources */,
 				F798417621998A24005FB00E /* SequenceFrame.bundle in Resources */,
 				F798420521998B8E005FB00E /* icon-活动标题向右箭头@3x.png in Resources */,
 				F79841CC21998B8E005FB00E /* top@2x.png in Resources */,

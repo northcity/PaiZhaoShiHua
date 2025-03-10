@@ -18,7 +18,7 @@ import UIKit
 import SnapKit
 import SVProgressHUD
 import AliyunOSSiOS
-
+import StoreKit
 
 var isPushed = false
 
@@ -49,10 +49,44 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tapGesture)
         // 监听首次数据到达，跳转到新页面
         NotificationCenter.default.addObserver(self, selector: #selector(handleFirstData(_:)), name: NSNotification.Name("StreamingUpdate"), object: nil)
-
-        
     }
     
+    
+    func checkAndRequestReview() {
+          // 获取当前日期
+          let currentDate = Date()
+          
+          // 从 UserDefaults 中获取上次弹出评论弹窗的日期
+          let lastReviewRequestDate = UserDefaults.standard.object(forKey: "LastReviewRequestDate") as? Date
+          
+          // 如果没有记录上次日期，或者距离上次日期已经超过两天
+          if lastReviewRequestDate == nil || daysBetween(lastReviewRequestDate!, and: currentDate) >= 2 {
+              // 调用系统的评论弹窗
+              requestReview()
+              
+              // 更新 UserDefaults 中存储的日期为当前日期
+              UserDefaults.standard.set(currentDate, forKey: "LastReviewRequestDate")
+          }
+      }
+
+      func requestReview() {
+          // 检查系统版本，确保支持 SKStoreReviewController
+          if #available(iOS 10.3, *) {
+              // 调用系统的评论弹窗
+              SKStoreReviewController.requestReview()
+          } else {
+              // 对于不支持的系统版本，可以提供一个替代方案，比如跳转到 App Store
+              let alert = UIAlertController(title: "Rate Us", message: "Please rate us on the App Store.", preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+              self.present(alert, animated: true, completion: nil)
+          }
+      }
+
+      func daysBetween(_ startDate: Date, and endDate: Date) -> Int {
+          let calendar = Calendar.current
+          let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+          return components.day ?? 0
+      }
     
     @objc private func handleFirstData(_ notification: Notification) {
        
@@ -62,6 +96,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
        
         isPushed = true
 
+        self.checkAndRequestReview()
         SVProgressHUD.show(withStatus: "识别成功")
         guard let content = notification.object as? String else { return }
         
